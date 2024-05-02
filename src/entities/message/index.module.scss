@@ -1,0 +1,33 @@
+.message {
+    /* padding: 10px;
+    border-radius: 5px;
+    background-color: blueviolet;
+    color: white; */
+    margin: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.message_content {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    align-items: flex-end;
+    /* flex-basis: fit-content; */
+    width: fit-content;
+    border-radius: 5px;
+    /* background-color: #0468ff; */
+    color: white;
+    border: 5px solid #0468ff;
+}
+
+.message_sender {
+    width: 100%;
+    text-align: end;
+    background-color: #0468ff;
+}
+
+.message_from {
+    justify-content: flex-start;
+}

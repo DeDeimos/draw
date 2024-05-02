@@ -1,6 +1,8 @@
 import React from "react";
 import { SketchPicker } from "react-color";
+import { Twitter } from "react-color/lib/components/twitter/Twitter";
 import { useState } from "react";
+import { CompactPicker } from "react-color";
 
 const ColorInput = ({ color, setColor }) => {
     // console.log(`ColorInput: ${color}`);
@@ -10,10 +12,14 @@ const ColorInput = ({ color, setColor }) => {
     }
 
     return (
-        <SketchPicker
+        // <SketchPicker
+        //     color={color}
+        //     onChangeComplete={handleChangeComplete}
+        // />
+        <CompactPicker
             color={color}
-            onChangeComplete={handleChangeComplete}
-        />
+            onChange={handleChangeComplete}
+            />
     );
 }   
 

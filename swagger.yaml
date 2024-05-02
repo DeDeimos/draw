@@ -1,0 +1,47 @@
+openapi: 3.0.0
+info:
+  title: Application level WebSocket server API
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000
+    description: Application level WebSocket server
+paths:
+  /api/send:
+    post:
+      summary: Send image to clients in general chat
+      description: |
+        This endpoint allows sending images to WebSocket clients.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: base64
+                  description: Base64 encoded image data
+                sender:
+                  type: string
+                  description: Name of the message sender
+                  example: "John"
+                timestamp:
+                  type: string
+                  format: date-time
+                  description: Sending time in ISO 8601 format
+                  example: "2024-03-31T12:00:00Z"
+                error:
+                  type: boolean
+                  description: Indicates whether the message is an error message
+                  default: false
+              required:
+                - image
+                - sender
+                - timestamp
+                - error
+      responses:
+        "200":
+          description: Message sent successfully
+        "500":
+          description: Internal server error
