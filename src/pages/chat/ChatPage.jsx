@@ -161,6 +161,7 @@ export const ChatPage = () => {
             onClick={() => {
               dispatch(deleteUser());
               navigate("/");
+              socketRef.current.disconnect();
             }}
           >
             Выйти
