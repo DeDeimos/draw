@@ -7,10 +7,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteUser } from "../../entities/user/userSlise";
 
+const url = "http://localhost:5000";
+
 export const ChatPage = () => {
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
-  const [sendMessages, setSendMessages] = useState([]);
+  const [sendMessages, setSendMessages] = useState([]); // [time1, time2, time3]
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -22,7 +24,7 @@ export const ChatPage = () => {
     if (user.user.name === "") {
       navigate("/");
     }
-    socketRef.current = io("http://localhost:5000", {
+    socketRef.current = io(url, {
       query: { roomId: "1" },
     });
 
@@ -35,16 +37,19 @@ export const ChatPage = () => {
     });
 
     socketRef.current.on("message", (message) => {
-      console.log("message", message);
-      if (message.error && !sendMessages.includes(message.time)) {
-        console.log("error message");
-        console.log("message time", message.time);
-        console.log("messages array", sendMessages);
-      } else 
-
-      setMessages((prevMessages) => [message, ...prevMessages]);
+      receiveMessage(message);
     });
   }, []);
+
+  const receiveMessage = (message) => {
+    // if (message.error && !sendMessages.includes(message.time)) {
+    //   console.log("error message");
+    //   console.log("message time", message.time);
+    //   console.log("messages array", sendMessages);
+    // } else {
+      setMessages((prevMessages) => [message, ...prevMessages]);
+    // }
+  };
 
   const [isDrawing, setIsDrawing] = useState(false);
   const [color, setColor] = useState("#000");
@@ -134,14 +139,16 @@ export const ChatPage = () => {
     link.setAttribute("download", "canvas.png");
     let image = canvasRef.current.toDataURL("image/png");
     link.setAttribute("href", image);
-    console.log(image.split(",")[1]);
+    // console.log(image.split(",")[1]);
+    const time = new Date().getTime();
     socketRef.current.emit("message", {
-      time: new Date().getTime(),
+      time: time,
       payload: image,
       sender: sender,
-      error: true,
     });
-    setSendMessages((prevMessages) => [new Date().getTime(), ...prevMessages]);
+    
+    setSendMessages((prevMessages) => [...prevMessages, time]);
+    console.log("sendMessages", sendMessages);
   };
 
   return (

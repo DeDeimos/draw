@@ -7,6 +7,7 @@ import { Button } from "@mui/material";
 
 export const AuthPage = () => {
   const [name, setName] = useState("");
+  const [error, setError] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -17,8 +18,10 @@ export const AuthPage = () => {
 
   const handleLogin = () => {
     if (name.trim().length === 0) {
+      setError(true);
       return;
     }
+    setError(false);
     dispatch(setUser(name));
     navigate("/chat");
   };
@@ -33,6 +36,7 @@ export const AuthPage = () => {
           placeholder="Введите имя"
           value={name}
         />
+        {error && <p className={s.error}>Введите имя</p>}
         <Button
         onClick={handleLogin}>
           Войти
