@@ -176,7 +176,7 @@ export const ChatPage = () => {
               content={message.payload}
               sender={message.sender}
               time={message.time}
-              isIncoming={sender !== message.sender || (message.error && message.sender == null)}
+              isIncoming={sender !== message.sender && message.sender !== null}
               isError={message.error}
             />
           ))}
