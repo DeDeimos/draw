@@ -39,6 +39,10 @@ export const ChatPage = () => {
     socketRef.current.on("message", (message) => {
       receiveMessage(message);
     });
+
+    return () => {
+      socketRef.current.disconnect();
+    };
   }, []);
 
   const receiveMessage = (message) => {
