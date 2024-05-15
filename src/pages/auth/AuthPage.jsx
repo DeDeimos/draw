@@ -3,6 +3,7 @@ import s from "./index.module.scss";
 import { useNavigate} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../entities/user/userSlise";
+import { Button } from "@mui/material";
 
 export const AuthPage = () => {
   const [name, setName] = useState("");
@@ -32,12 +33,16 @@ export const AuthPage = () => {
           placeholder="Введите имя"
           value={name}
         />
-        <button
+        <Button
+        onClick={handleLogin}>
+          Войти
+        </Button>
+        {/* <button
           className={s.button}
           onClick={handleLogin}
         >
             Войти
-        </button>
+        </button> */}
       </div>
     </div>
   );

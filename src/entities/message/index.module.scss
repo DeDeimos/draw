@@ -19,13 +19,20 @@
     border-radius: 5px;
     /* background-color: #0468ff; */
     color: white;
-    border: 5px solid #0468ff;
+    // border: 5px solid #0468ff;
+}
+
+.message_bottom {
+    width: 100%;
+    background: #0468ff;
+    display: flex;
+    justify-content: space-between;
 }
 
 .message_sender {
     width: 100%;
     text-align: end;
-    background-color: #0468ff;
+    // background-color: #0468ff;
 }
 
 .message_from {

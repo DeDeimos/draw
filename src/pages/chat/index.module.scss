@@ -8,8 +8,8 @@
     border-radius: 4px;
 }
 .footer {
-    position: fixed;
-    bottom: 0;
+    // position: fixed;
+    // bottom: 0;
     width: 100%;
     background: white;
 }
@@ -33,18 +33,23 @@
     grid-template-rows: 46px;
 }
 
+.chat_wrapper {
+  height: 73%;
+  overflow: scroll;
+  display: flex;
+}
+
 .chat {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     overflow-x: hidden;
     scrollbar-width: none;
-    margin-bottom: 210px;
-    margin-top: 50px;
+    width: 100%;
     scrollbar-width: none;
 }
 
 .navbar {
-    position: fixed;
+    // position: fixed;
     top: 0;
     width: 100%;
     background: white;
